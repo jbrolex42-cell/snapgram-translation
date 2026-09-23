@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: snapgram-translation
+    runtime: python
+    plan: starter
+
+    buildCommand: pip install -r requirements.txt
+
+    startCommand: gunicorn --bind 0.0.0.0:$PORT "wsgi:app"
+
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.5
+
+      - key: LT_LOAD_ONLY
+        value: en,sw,fr,es,de,pt,it,ar,hi,zh,ja,ko,ru,nl,tr
+
+      - key: LT_CHAR_LIMIT
